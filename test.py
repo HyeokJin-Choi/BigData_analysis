@@ -23,7 +23,7 @@ print(score)
 
 
 # 1. CSV 파일 읽기
-file_path = '전국대학및전문대학정보표준데이터.csv'
+file_path = 'testCSV/전국대학및전문대학정보표준데이터.csv'
 data = pd.read_csv(file_path, usecols=['학교명', '시도명', '소재지도로명주소'])
 data.fillna('', inplace=True)  # NaN 값 처리
 # 2. 대학명 중복 제거
@@ -34,7 +34,7 @@ data = data.drop_duplicates(subset=['학교명'])  # 중복 제거
 # # 결과 출력
 # print(filtered_data)
 
-file_path2 = '주민등록 인구 및 세대현황.csv'
+file_path2 = 'testCSV/주민등록 인구 및 세대현황.csv'
 data2 = pd.read_csv(file_path2, encoding='euc-kr')
 data2.fillna('',inplace=True)
 print(data2)
