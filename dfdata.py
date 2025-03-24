@@ -29,3 +29,6 @@ examdf2 = examdf[['math', 'english', 'science']]
 # examdf['sum'] = examdf2.sum(axis=1)
 # print(examdf)
 examdf2.sum(axis=1)
+
+# agg()함수를 단독으로 사용하면 시리즈 자료구조 형태로 반환하므로, query()를 사용하여 조건을 부여하지 못하고, loc를 통해서 조건을 부여해야하는 단점이 있음.
+# groupby()함수를 사용하면 데이터프레임 자료구조 형태로 반환하므로, query()를 사용하여 조건을 부여할 수 있음
