@@ -43,3 +43,5 @@ data = mpg.query('category == "suv"') \
                     .head(5)
                     
 data_test = mpg.groupby(['category'],as_index=False).agg(cty_mean = ('cty','mean'))
+
+
