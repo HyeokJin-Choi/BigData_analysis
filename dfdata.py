@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 irisdf = pd.read_csv('dfdata/iris.csv')
 # irisdf.info() # 열의 개수와 해당 열이 가지는 원소에 대한 특징을 산출
@@ -30,18 +31,30 @@ examdf2 = examdf[['math', 'english', 'science']]
 # print(examdf)
 examdf2.sum(axis=1)
 
-# agg()함수를 단독으로 사용하면 시리즈 자료구조 형태로 반환하므로, query()를 사용하여 조건을 부여하지 못하고, loc를 통해서 조건을 부여해야하는 단점이 있음.
-# groupby()함수를 사용하면 데이터프레임 자료구조 형태로 반환하므로, query()를 사용하여 조건을 부여할 수 있음
-
+# examdf3 = examdf.groupby('nclass',as_index=False) \
+#     .agg(mean_value_math = ('math','mean')) 
 
 mpg = pd.read_excel('dfdata/mpg.xlsx')
-data = mpg.query('category == "suv"') \
-    .assign(total = (mpg['cty'] + mpg['hwy'])/2) \
-        .groupby('manufacturer') \
-            .agg(total_mean = ('total','mean')) \
-                .sort_values('total_mean',ascending = False) \
-                    .head(5)
+# data = mpg.query('category == "suv"') \
+#     .assign(total = (mpg['cty'] + mpg['hwy'])/2) \
+#         .groupby('manufacturer') \
+#             .agg(total_mean = ('total','mean')) \
+#                 .sort_values('total_mean',ascending = False) \
+#                     .head(5)
                     
-data_test = mpg.groupby(['category'],as_index=False).agg(cty_mean = ('cty','mean'))
+# data_test = mpg.groupby(['category'],as_index=False).agg(cty_mean = ('cty','mean'))
+
+# cl = mpg['category'].value_counts(5) # 기본적으로 정렬됨.
+# cl.plot.pie(ylabel='', autopct='%1.1f%%', title='category')
+# plt.show()
+
+titanic = pd.read_csv('dfdata/titanic.csv')
+t = titanic.dropna(subset = 'age', axis = 0) # 0은 행방향
+print(t['age'].describe())
+# t['age'].plot.hist(ylabel='Frequency', xlabel = 'age')
+t.query('sex=="male"')['age'].plot.hist(ylabel='man', alpha=0.5)
+t.query('sex=="female"')['age'].plot.hist(ylabel='woman', alpha=0.5)
+plt.show()
 
 
+            
