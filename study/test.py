@@ -48,7 +48,7 @@ test.drop('J', inplace = True); test
 test2 = test.copy(); test2 += 500; result = pd.DataFrame({'test':test, 'test2':test2}); result
 #----------------------------------------------------
 
-test = pd.read_csv('dfdata/iris.csv')
+test = pd.read_csv('../dfdata/iris.csv')
 test.info() # 객체에 대한 정보,열에 대한 모든 정보(컬럼명, null값 여부, 자료형)
 test.shape, test.shape[0], test.shape[1] #[]를 붙이면 행(0), 열(1) 구분해서 개수 파악
 test.head() # 데이터 앞부분 보기. default = 5개, 정수 넣으면 해당 정수값만큼 앞부분.
