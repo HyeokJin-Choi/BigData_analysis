@@ -10,6 +10,6 @@ plt.show()
 late.plot(title='Late student per month', # 제목
  xlabel= 'month', # x축 레이블
  ylabel='frequency', # y축 레이블
- linestyle='dashed', # 선의 종류
+ linestyle='solid', # 선의 종류
  marker='o') # 점의 종류
 plt.show()
