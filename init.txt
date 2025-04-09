@@ -1,1 +1,12 @@
 # Using Spyder & Anaconda & Python
+
+# seaborn  사용하여 그리기
+fig,axes = plt.subplots(1,2,figsize=(20,7),dpi=80)
+#palette는 색정보 넣어주고 hue는 뭐 가지고 색 구분할건지 넣어줘야함
+sns.boxplot(x='year', y ='value' ,data = df,ax=axes[0],palette='deep')
+sns.boxplot(x='month',y='value',
+            data=df.loc[~df.year.isin([1991,2008]),:],ax=axes[1],hue='month')
+
+axes[0].set_title('year-wise Box Plot\n(The Trend',fontsize=18)
+axes[1].set_title('year-wise Box Plot\n(The The Seasonality)',fontsize=18)
+plt.show()
