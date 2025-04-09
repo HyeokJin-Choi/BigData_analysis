@@ -27,14 +27,24 @@ car['drv'].value_counts() # 해당 컬럼의 집단별 빈도를 쉽게 구하�
 #%% Quiz
 # 1. exam.csv를 활용하여, 각 분반별 영어 점수의 합계를 출력하라.
 
-# 2. 제조 회사별로 'suv' 자동차의 도시 및 고속도로 합산 연비 평균을 구해 내림차순으로 정렬하고, 1~5위까지 출력하라. (car 객체를 사용할 것.)
+# 2. 어떤 차종의 도시 연비가 높은지 비교하려고 함. category별 cty평균을 구하라. (car 객체를 사용할 것.)
 
-# 3. 어떤 차종의 도시 연비가 높은지 비교하려고 함. category별 cty별 평균을 구하라. (car 객체를 사용할 것.)
+# 3. 3번의 출력 결과는 category값 알파벳순으로 정렬되어 있다. cty의 평균이 높은 순(내림차순을 의미)으로 정렬하라.
+
+# 4. 회사별 'compact'
+
+# 6. 제조 회사별로 'suv' 자동차의 도시 및 고속도로 합산 연비 평균을 구해 내림차순으로 정렬하고, 1~5위까지 출력하라. (car 객체를 사용할 것.)
 
 #<정답>
 # 1. df.groupby('nclass').agg(english_sum = ('english','sum'))
 
-# 2.
+# 2. car.groupby('category').agg(category_mean=('cty', 'mean'))
+
+# 3. car.groupby('category').agg(category_mean=('cty', 'mean')).sort_values('category_mean',ascending=False)
+
+# 4. 
+
+# 6. 
 # car.query('category == "suv"') \
 #     .assign(total = (car['cty']+car['hwy'])) \
 #         .groupby('manufacturer') \
