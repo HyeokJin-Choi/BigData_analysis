@@ -10,3 +10,6 @@ sns.boxplot(x='month',y='value',
 axes[0].set_title('year-wise Box Plot\n(The Trend',fontsize=18)
 axes[1].set_title('year-wise Box Plot\n(The The Seasonality)',fontsize=18)
 plt.show()
+
+
+정보나루 API 92d0610b51b298034f363dbd3f366ba1c0415a0bb17dd1c0ac5dc5f40f6d5b04
