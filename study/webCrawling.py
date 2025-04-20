@@ -50,3 +50,4 @@ print(result)
 # 결과 출력
 print(df_filtered.head())
 print(f"총 매장 수: {df_filtered.shape[0]}")
+
