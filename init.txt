@@ -14,3 +14,4 @@ plt.show()
 
 <정보나루 API> 
 http://data4library.kr/api/loanItemSrch?authKey=92d0610b51b298034f363dbd3f366ba1c0415a0bb17dd1c0ac5dc5f40f6d5b04&startDt=2022-01-01&endDt=2022-03-31&gender=1&age=20&region=11;31&addCode=0&kdc=6&pageNo=1&pageSize=10
+-> API없이도 Web크롤링 가능하지만, 정적 HTML을 분석할 수 있어야 함.
