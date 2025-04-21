@@ -52,3 +52,38 @@ x2_str="""
     </book>
 </books>
 """
+
+
+
+
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+def get_stock_codes(pages=5):
+    base_url = "https://finance.naver.com/sise/sise_market_sum.naver?page="
+    stock_list = []
+
+    for page in range(1, pages + 1):
+        url = base_url + str(page)
+        headers = {'User-Agent': 'Mozilla/5.0'}
+        res = requests.get(url, headers=headers)
+        soup = BeautifulSoup(res.text, 'html.parser')
+
+        table = soup.select('table.type_2')[0]
+        rows = table.select('tr')[2:]
+
+        for row in rows:
+            cols = row.select('td')
+            if len(cols) > 1:
+                link_tag = cols[1].select_one('a')
+                if link_tag:
+                    name = link_tag.text.strip()
+                    href = link_tag['href']
+                    code = href.split('=')[-1]
+                    stock_list.append({'종목명': name, '종목코드': code})
+
+    return pd.DataFrame(stock_list)
+
+df = get_stock_codes(pages=3)
+print(df.head())
