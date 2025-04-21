@@ -2,7 +2,7 @@ import requests
 import pandas as pd
 import calendar # 정확한 날짜의 계산을 위해서 사용
 
-def webAPI(year=2020, month=1, age_list=[14, 20, 30], rank=10):
+def webAPI(api = "92d0610b51b298034f363dbd3f366ba1c0415a0bb17dd1c0ac5dc5f40f6d5b04",year=2020, month=1, age_list=[14, 20, 30], rank=10):
     columnsList = ['대출순위', '제목', '작가', '출판사', '대출회수']
     raw_columns = ['no', 'bookname', 'authors', 'publisher', 'loan_count']
     result = []
@@ -14,7 +14,7 @@ def webAPI(year=2020, month=1, age_list=[14, 20, 30], rank=10):
     for a in age_list:
         url = (
             f"http://data4library.kr/api/loanItemSrch?"
-            f"authKey=92d0610b51b298034f363dbd3f366ba1c0415a0bb17dd1c0ac5dc5f40f6d5b04"
+            f"authKey={api}"
             f"&startDt={year}-{month_str}-01"
             f"&endDt={year}-{month_str}-{end_day}"
             f"&age={a}&format=json"
@@ -43,6 +43,7 @@ def webAPI(year=2020, month=1, age_list=[14, 20, 30], rank=10):
 
 # *** 메인 실행 코드 ***
 print("*** 도서관 정보나루의 연도, 월, 연령별 인기대출도서 분석 프로그램 ***")
+api = str(input("도서관 정보나루에서 발급받으신 API를 입력: "))
 year = int(input("확인할 연도 입력: "))
 month = int(input(f"{year}년도의 확인할 월 입력 (ex. 1월이면 1, 2월이면 2 ...): "))
 n = int(input("확인하고 싶은 연령의 개수: "))
@@ -53,7 +54,7 @@ for i in range(n):
 
 rank = int(input("몇 위까지 확인하시겠습니까? (ex. 10): "))
 
-result = webAPI(year=year, month=month, age_list=age, rank=rank)
+result = webAPI(api = api,year=year, month=month, age_list=age, rank=rank)
 
 for d_i in range(n):
     print(f"\n{year}년 {month}월, {age[d_i]}세에게 인기 있었던 상위 {rank}권의 도서입니다.")
