@@ -35,3 +35,5 @@ plt.tight_layout()
 
 # 그래프 표시
 plt.show()
+
+
