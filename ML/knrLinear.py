@@ -42,5 +42,36 @@ print("test",knr.score(test_input,test_target))
 # 🔻 훈련 점수와 테스트 점수가 모두 낮음 -> 모델이 충분히 학습되지 않음 -> 과소적합
 # ✅ 훈련 점수와 테스트 점수가 모두 적당히 높고, 큰 차이 없음 -> 일반화 성능이 좋음 -> 적절한 모델
 
-# 해당 코드에서 사용하는 데이터는 n_neighbors가 4일때가 적절한 모델로 판단.
-# print("D = ",abs(knr.score(train_input,train_target)-knr.score(test_input,test_target)))로 값을 모두 비교하면서 측정
+
+# 성능 기록 리스트
+# 우선순위 1.Train이 1에 가까운지? -> 2.Test가 1에 가가운지? -> 3.Train과 Test의 차이 D가 최소인
+# results = []
+
+# # n_neighbors를 1부터 39까지 바꿔가며 평가
+# for n in range(1, 40):
+#     knr = KNeighborsRegressor(n_neighbors=n)
+#     knr.fit(train_input, train_target)
+#     train_score = knr.score(train_input, train_target)
+#     test_score = knr.score(test_input, test_target)
+#     diff = abs(train_score - test_score)
+
+#     # 각 우선순위 요소 저장
+#     results.append({
+#         'n': n,
+#         'train_score': train_score,
+#         'test_score': test_score,
+#         'D': diff,
+#         'train_diff_1': abs(train_score - 1),
+#         'test_diff_1': abs(test_score - 1)
+#     })
+
+# # 우선순위대로 정렬
+# sorted_results = sorted(
+#     results,
+#     key=lambda x: (x['train_diff_1'], x['test_diff_1'], x['D'])
+# )
+
+# # 가장 적절한 결과
+# best = sorted_results[0]
+# print(f"가장 적절한 n_neighbors 값 = {best['n']}")
+# print(f"train_score = {best['train_score']:.4f}, test_score = {best['test_score']:.4f}, D = {best['D']:.4f}")
