@@ -27,3 +27,7 @@ knr = KNeighborsRegressor(n_neighbors=3) #n_neighbors의 값을 수정하면서 
 knr.fit(train_input,train_target)
 print("train",knr.score(train_input,train_target))
 print("test",knr.score(test_input,test_target))
+
+# n_neighbors 값에 따라 모델의 복잡도가 달라지고, 그에 따라 훈련 데이터와 테스트 데이터에서의 성능이 다르게 나타날 수 있습니다.
+# n_neighbors가 작으면 훈련 데이터에서 높은 정확도를 얻을 수 있지만, 테스트 데이터에서 예측 성능이 낮을 수 있습니다(과적합).
+# n_neighbors가 크면 훈련 데이터에서 정확도가 떨어질 수 있지만, 테스트 데이터에서 더 안정적이고 일반적인 성능을 보일 수 있습니다(과소적합).
