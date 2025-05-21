@@ -31,3 +31,9 @@ print("test",knr.score(test_input,test_target))
 # n_neighbors 값에 따라 모델의 복잡도가 달라지고, 그에 따라 훈련 데이터와 테스트 데이터에서의 성능이 다르게 나타날 수 있습니다.
 # n_neighbors가 작으면 훈련 데이터에서 높은 정확도를 얻을 수 있지만, 테스트 데이터에서 예측 성능이 낮을 수 있습니다(과적합).
 # n_neighbors가 크면 훈련 데이터에서 정확도가 떨어질 수 있지만, 테스트 데이터에서 더 안정적이고 일반적인 성능을 보일 수 있습니다(과소적합).
+
+# knr.score()가 의미하는 것
+# score(train_input, train_target)
+# → 훈련 데이터에 대한 모델의 성능을 의미합니다.
+# score(test_input, test_target)
+# → 테스트(검증) 데이터에 대한 모델의 일반화 성능을 의미합니다.
