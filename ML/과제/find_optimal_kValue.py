@@ -23,10 +23,9 @@ inertias = pd.Series([]) # 군집화 평가 결과
 for k in ks:
     model = KMeans(n_clusters=k, n_init=10, random_state=123)
     model.fit(df_scaled)
-    inertias.loc[k] = model.inertia_
+    inertias.loc[k] = model.inertia_ # 군집 평가 점수 - 군집의 중심점과의 거리를 합산한 값
 plt.figure(figsize=(7, 4))
 inertias.plot.line(title = 'Inertias Score',
 xlabel= 'number of clusters, k',
 ylabel = 'inertia')
 plt.show()
-
