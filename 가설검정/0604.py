@@ -36,3 +36,18 @@ if p < alpha:
     print("\n결론: p-value가 0.05보다 작으므로, 선실 등급과 생존 여부는 유의미한 관련이 있습니다.")
 else:
     print("\n결론: p-value가 0.05보다 크므로, 선실 등급과 생존 여부는 관련이 없다고 볼 수 있습니다.")
+
+
+
+# 필요한 라이브러리 불러오기
+import seaborn as sns
+import pandas as pd
+from scipy.stats import chi2_contingency
+
+# 1. 데이터셋 불러오기
+titanic = sns.load_dataset("titanic")
+
+df1 = titanic.groupby(['survived','pclass']).agg(count=('pclass','count')).unstack('pclass')
+print(df1)
+
+chi2_contingency(df1)
