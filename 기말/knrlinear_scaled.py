@@ -75,3 +75,7 @@ axes[2].set_ylabel('Weight (scaled)')
 plt.tight_layout()
 plt.show()
 
+# 표준화를 진행한 후 예측 결과가 달라진 이유는 두 특성(길이와 무게)의 단위와 크기 차이로 인해 생긴 문제를 해결했기 때문
+print(kn.predict([new]))
+
+
