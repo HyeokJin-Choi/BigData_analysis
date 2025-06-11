@@ -1,4 +1,4 @@
-# 해당 코드는 생선의 길이와 무게로 도미와 빙어를 구별하는 k-최근접 회귀분석 코드임.
+# 해당 코드는 생선의 길이와 무게로 도미와 빙어를 구별하는 k-최근접 회귀분석 코드임. ~8page
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
