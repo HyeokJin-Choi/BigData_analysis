@@ -10,7 +10,9 @@ titanic = sns.load_dataset("titanic")
 # 4.교차표의 기대빈도를 확인한다.
 # 5.카이제곱검정을 실시한후 p-value값을 확인한다.
 df1 = titanic.groupby(['pclass','alive']).agg(count=('pclass','count')).unstack('pclass')
+# unstack()은 인덱스를 컬럼으로 옮기는 함수 → 멀티인덱스 DataFrame을 pivot 형태로 변형
 print(stats.chi2_contingency(df1))
+
 
 # 결과를 확인해보니, array에서 나타나는 값이 모두 5 이상으로 나타남. 따라서 카이제곱 검정을 거칠 수 있음.
 # 또한 유의수준(p-value) 0.05 기준으로 매우 작기 때문에, 귀무가설 기각
