@@ -85,7 +85,7 @@ point = np.arange(15,50)
 plt.scatter(train_input,train_target)
 # y = a*x^2 + a*x + b, 곡선형태
 plt.plot(point, lr.coef_[0]*point**2 + lr.coef_[1]*point + lr.intercept_)
-plt.scatter(50,1583,marker="^")
+plt.scatter(50,lr.predict([[50**2,50]]),marker="^")
 plt.xlabel('length')
 plt.ylabel('weight')
 plt.show()
