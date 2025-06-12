@@ -35,5 +35,8 @@ print(stats.levene(group_1, group_2))
 # ---> 등분산성 만족 O
 
 # 독립표본 T-검정 실행 가능
+# 가설 설정 :
+# 귀무가설(H₀): 두 그룹의 평균은 차이가 없다.
+# 대립가설(H₁): 두 그룹의 평균은 차이가 있다.
 result = stats.ttest_ind(group_1, group_2, equal_var=True)
 print(result)
