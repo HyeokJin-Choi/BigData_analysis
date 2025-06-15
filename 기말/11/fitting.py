@@ -54,7 +54,7 @@ perch_full=df.to_numpy()
 
 train_input,test_input,train_target,test_target = train_test_split(perch_full,perch_weight,random_state=42)
 
-poly = PolynomialFeatures(include_bias=False)
+poly = PolynomialFeatures(degree = 5,include_bias=False)
 # # x1 = 2, x2 = 3
 # poly.fit([[2,3]])
 # # x1, x2, x1^2, x1*x2, x2^2
@@ -62,9 +62,9 @@ poly = PolynomialFeatures(include_bias=False)
 
 poly.fit(train_input)
 train_poly = poly.transform(train_input)
-print(train_poly.shape)
-print(poly.get_feature_names_out()) # x0, x1, x2에 관해서 제곱하고, 곱하고...
-print(train_input) # 특성이 3개임을 확인.
+#print(train_poly.shape)
+#print(poly.get_feature_names_out()) # x0, x1, x2에 관해서 제곱하고, 곱하고...
+#print(train_input) # 특성이 3개임을 확인.
 
 lr = LinearRegression()
 lr.fit(train_poly,train_target)
@@ -72,6 +72,31 @@ lr.fit(train_poly,train_target)
 # y_pred = lr.predict(train_poly)
 # y_true = train_target
 # r2 = 1 - np.sum((y_true - y_pred)**2) / np.sum((y_true - np.mean(y_true))**2)
-print(lr.score(train_poly,train_target))
+#print(lr.score(train_poly,train_target))
 test_poly=poly.transform(test_input)
-print(lr.score(test_poly,test_target))
+#print(lr.score(test_poly,test_target))
+
+#%% 규제모델
+from sklearn.linear_model import Ridge
+ridge = Ridge()
+ridge.fit(train_poly, train_target)  # 🚫 정규화 안 하면 잘 작동안 함
+print('정규화를 거치지 않은 릿지 train: ',ridge.score(train_poly,train_target))
+print('정규화를 거치지 않은 릿지 train: ',ridge.score(test_poly,test_target))
+
+#%% 정규화
+from sklearn.preprocessing import StandardScaler
+ss=StandardScaler()
+ss.fit(train_poly)
+train_scaled = ss.transform(train_poly)
+test_scaled=ss.transform(test_poly)
+
+ridge2 = Ridge()
+ridge2.fit(train_scaled,train_target)
+print('정규화를 거친 릿지 train: ',ridge2.score(train_scaled, train_target))
+print('정규화를 거친 릿지 test: ',ridge2.score(test_scaled, test_target))
+
+lr2 = LinearRegression()
+lr2.fit(train_scaled, train_target)
+print('정규화를 거친 선형 train: ',lr2.score(train_scaled,train_target))
+print('정규화를 거친 선형 train: ',lr2.score(test_scaled,test_target))
+
